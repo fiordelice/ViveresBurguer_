@@ -8,6 +8,24 @@
 :root{--orange:#ff6600;--black:#111;--dark:#222;--white:#fff;--red:#ff3b3b;}
 body{margin:0;font-family:'Inter',sans-serif;background:var(--black);color:var(--white);}
 header{background:var(--black);border-bottom:2px solid var(--orange);padding:16px;text-align:center;font-size:1.5rem;font-weight:700;}
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* centraliza horizontalmente */
+  gap: 12px; /* espaço entre logo e nome */
+}
+
+header .logo {
+  width: 80px; /* tamanho da logo */
+  height: 80px;
+  object-fit: contain;
+  border-radius: 8px; /* opcional, arredonda cantos da logo */
+}
+
+header .site-name {
+  font-size: 1.8rem; /* tamanho do texto */
+  font-weight: 700;
+}
 .container{max-width:1200px;margin:24px auto;padding:0 16px;display:grid;grid-template-columns:1fr 360px;gap:24px;}
 .menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;}
 .card{background:var(--dark);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:10px;min-height:220px;box-shadow:0 6px 20px rgba(0,0,0,0.2);}
@@ -52,7 +70,12 @@ select,input{width:100%;padding:10px;border-radius:8px;margin-top:6px;background
 </style>
 </head>
 <body>
-<header>𝑽í𝒗𝒆𝒓𝒆𝒔 𝑩𝒖𝒓𝒈𝒖𝒆𝒓</header>
+<header>
+  <div class="header-content">
+    <img src="logo.png" alt="Logo Viveres Burger" class="logo">
+    <span class="site-name">𝑽í𝒗𝒆𝒓𝒆𝒔 𝑩𝒖𝒓𝒈𝒖𝒆𝒓</span>
+  </div>
+</header>
 <main class="container">
   <section>
     <h2>Nosso Cardápio</h2>
