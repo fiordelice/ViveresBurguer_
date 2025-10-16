@@ -5,40 +5,121 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>𝑽í𝒗𝒆𝒓𝒆𝒔 𝑩𝒖𝒓𝒈𝒖𝒆𝒓</title>
 <style>
-:root{--orange:#ff6600;--black:#111;--dark:#222;--white:#fff;--red:#ff3b3b;}
-body{margin:0;font-family:'Inter',sans-serif;background:var(--black);color:var(--white);}
-header{background:var(--black);border-bottom:2px solid var(--orange);padding:16px;text-align:center;font-size:1.5rem;font-weight:700;}
+:root {
+  --orange:#ff6600; --black:#111; --dark:#222; --white:#fff; --red:#ff3b3b;
+}
+body {
+  margin:0;
+  font-family:'Inter',sans-serif;
+  background:var(--black);
+  color:var(--white);
+}
+header {
+  background:var(--black);
+  border-bottom:2px solid var(--orange);
+  padding:16px;
+}
 .header-content {
-  display: flex;
-  align-items: center;
-  justify-content: center; /* centraliza horizontalmente */
-  gap: 12px; /* espaço entre logo e nome */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
 }
-
 header .logo {
-  width: 80px; /* tamanho da logo */
-  height: 80px;
-  object-fit: contain;
-  border-radius: 8px; /* opcional, arredonda cantos da logo */
+  width:48px;
+  height:48px;
+  object-fit:contain;
+  border-radius:8px;
+}
+header .site-name {
+  font-size:1.8rem;
+  font-weight:700;
+  color:var(--orange);
 }
 
-header .site-name {
-  font-size: 1.8rem; /* tamanho do texto */
-  font-weight: 700;
+/* Container e layout */
+.container{
+  max-width:1200px;
+  margin:24px auto;
+  padding:0 16px;
+  display:grid;
+  grid-template-columns:1fr 360px;
+  gap:24px;
 }
-.container{max-width:1200px;margin:24px auto;padding:0 16px;display:grid;grid-template-columns:1fr 360px;gap:24px;}
-.menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;}
-.card{background:var(--dark);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:10px;min-height:220px;box-shadow:0 6px 20px rgba(0,0,0,0.2);}
-.thumb{width:100%;height:140px;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#333;}
-.thumb img{width:100%;height:100%;object-fit:cover;}
+.menu{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:18px;
+}
+
+/* Cards */
+.card{
+  background:var(--dark);
+  border-radius:14px;
+  padding:12px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.2);
+  position:relative;
+  transition:0.3s;
+}
+.card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 30px rgba(0,0,0,0.4);
+}
+.thumb{
+  width:100%;
+  aspect-ratio:4/3;
+  border-radius:10px;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#333;
+}
+.thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.badge{
+  position:absolute;
+  top:8px;
+  left:8px;
+  background:var(--orange);
+  color:#fff;
+  font-size:0.75rem;
+  padding:4px 8px;
+  border-radius:8px;
+}
+
 .name{font-weight:700;color:var(--orange);}
 .price{font-weight:800;color:var(--orange);}
 .desc{font-size:0.92rem;color:#ccc;margin-top:6px;}
 .row{display:flex;justify-content:space-between;align-items:center;margin-top:auto;}
-.btn{background:var(--orange);color:#fff;border:none;padding:10px 12px;border-radius:10px;cursor:pointer;font-weight:700;transition:0.12s;}
+.btn{
+  background:var(--orange);
+  color:#fff;
+  border:none;
+  padding:10px 12px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:700;
+  transition:0.12s;
+}
 .btn:active{transform:translateY(1px);}
 .btn.remove{background:var(--red);}
-.cart{position:relative;background:var(--black);border-radius:14px;padding:16px;box-shadow:0 6px 20px rgba(0,0,0,0.2);min-height:220px;}
+
+/* Carrinho */
+.cart{
+  position:relative;
+  background:var(--black);
+  border-radius:14px;
+  padding:16px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.2);
+  min-height:220px;
+}
 .cart h3{margin:0 0 6px 0;color:var(--orange);}
 .cart-empty{color:#ccc;padding:18px;background:var(--dark);border-radius:10px;text-align:center;}
 .cart-list{display:flex;flex-direction:column;gap:12px;max-height:420px;overflow:auto;}
@@ -57,25 +138,53 @@ header .site-name {
 .totals .row{display:flex;justify-content:space-between;align-items:center;}
 .checkout{margin-top:8px;display:flex;gap:10px;}
 .checkout .btn{flex:1;}
+
+/* Modal */
 .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.8);z-index:80;}
 .modal.open{display:flex;}
 .modal-card{width:80%;max-width:540px;background:var(--dark);border-radius:14px;padding:18px;box-shadow:0 30px 60px rgba(0,0,0,0.25);}
 .order-list{max-height:260px;overflow:auto;margin-top:10px;display:flex;flex-direction:column;gap:8px;}
+.order-item{display:flex;align-items:center;gap:8px;}
+.order-item img{width:48px;height:48px;object-fit:cover;border-radius:6px;}
+
+/* Inputs */
 select,input{width:100%;padding:10px;border-radius:8px;margin-top:6px;background:#333;border:1px solid #555;color:#fff;}
+#delivery-address-container input { width: 80%; max-width: 200px; padding: 8px 10px; border-radius: 8px; border: 1px solid #555; background: #222; color: #fff; margin-bottom: 6px; text-align: left; box-sizing: border-box; }
+
+/* Responsividade */
 @media(max-width:980px){.container{grid-template-columns:1fr 340px;}}
 @media(max-width:760px){.container{grid-template-columns:1fr;}.cart{order:2;margin-top:18px;}}
-#delivery-address-container input {
-  width: 80%; max-width: 200px; padding: 8px 10px; border-radius: 8px; border: 1px solid #555; background: #222; color: #fff; margin-bottom: 6px; text-align: left; box-sizing: border-box;
+
+/* Botão WhatsApp flutuante */
+#whatsapp-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:var(--green,#25d366);
+  color:#fff;
+  border:none;
+  border-radius:50%;
+  width:60px;
+  height:60px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.5rem;
+  cursor:pointer;
+  box-shadow:0 6px 20px rgba(0,0,0,0.3);
+  z-index:90;
 }
 </style>
 </head>
 <body>
+
 <header>
   <div class="header-content">
-    <img src="logo.png" alt="Logo Viveres Burger" class="logo">
+    <img src="images/logo.png" alt="Logo Viveres Burger" class="logo">
     <span class="site-name">𝑽í𝒗𝒆𝒓𝒆𝒔 𝑩𝒖𝒓𝒈𝒖𝒆𝒓</span>
   </div>
 </header>
+
 <main class="container">
   <section>
     <h2>Nosso Cardápio</h2>
@@ -136,23 +245,42 @@ select,input{width:100%;padding:10px;border-radius:8px;margin-top:6px;background
   </div>
 </div>
 
+<!-- Botão WhatsApp flutuante -->
+<button id="whatsapp-btn">💬</button>
+
 <script>
 // estado da loja
-let lojaAberta = JSON.parse(localStorage.getItem('burger_open')) ?? true;
+function verificarHorarioFuncionamento() {
+    const agora = new Date();
+    const utc = agora.getTime() + (agora.getTimezoneOffset() * 60000);
+    const brasilia = new Date(utc + (3600000 * -3)); 
+    const diaSemana = brasilia.getDay(); 
+    const hora = brasilia.getHours();
+    const minuto = brasilia.getMinutes();
+    const aberto = (diaSemana >= 1 && diaSemana <= 6) &&
+                   ((hora > 18 || (hora === 18 && minuto >= 30)) &&
+                    (hora < 22 || (hora === 22 && minuto <= 20)));
+    return { aberto, diaSemana };
+}
+
+let statusLoja = verificarHorarioFuncionamento();
+let lojaAberta = statusLoja.aberto;
+setInterval(()=>{ statusLoja = verificarHorarioFuncionamento(); lojaAberta = statusLoja.aberto; },60000);
 
 // menu
 const menuItems=[
-  {id:1,name:'Classic Burger',desc:'Hambúrguer simples',price:28.50,img:'burguer.png'},
-  {id:2,name:'Bacon Bliss',desc:'Bacon + queijo',price:36.90,img:'burguer1.png'},
-  {id:3,name:'Cheese Lover',desc:'Queijo extra',price:32.00,img:'burguer2.png'},
-  {id:4,name:'Cheddar Melt',desc:'Veggie burger',price:30.00,img:'burguer3.png'}
+  {id:1,name:'Classic Burger',desc:'Hambúrguer simples',price:28.50,img:'images/classic-burger.jpg',badge:'Mais pedido'},
+  {id:2,name:'Bacon Bliss',desc:'Bacon + queijo',price:36.90,img:'images/bacon-bliss.jpg',badge:'Novo'},
+  {id:3,name:'Cheese Lover',desc:'Queijo extra',price:32.00,img:'images/cheese-lover.jpg',badge:''},
+  {id:4,name:'Veggie Delight',desc:'Veggie burger',price:30.00,img:'images/veggie-delight.jpg',badge:'Vegano'}
 ];
 
 const menuEl=document.getElementById('menu');
 menuItems.forEach(i=>{
   const card=document.createElement('div'); card.className='card';
   card.innerHTML=`
-    <div class="thumb">${i.img?`<img src="${i.img}">`:'<span style="color:#ccc">Sem imagem</span>'}</div>
+    <div class="thumb">${i.img?<img src="${i.img}">:'<span style="color:#ccc">Sem imagem</span>'}</div>
+    ${i.badge?<div class="badge">${i.badge}</div>:''}
     <div class="name">${i.name}</div>
     <div class="price">R$ ${i.price.toFixed(2)}</div>
     <div class="desc">${i.desc}</div>
@@ -184,7 +312,7 @@ function updateCart(){
     total+=item.price*item.qty;
     const div=document.createElement('div'); div.className='cart-item';
     div.innerHTML=`
-      <div class="ci-thumb">${item.img?`<img src="${item.img}">`:'<span style="color:#ccc">Sem imagem</span>'}</div>
+      <div class="ci-thumb">${item.img?<img src="${item.img}">:'<span style="color:#ccc">Sem imagem</span>'}</div>
       <div class="ci-meta"><div class="ci-name">${item.name}</div><div class="ci-desc">R$ ${item.price.toFixed(2)}</div></div>
       <div class="ci-controls">
         <div class="qty"><button class="minus">-</button><span>${item.qty}</span><button class="plus">+</button></div>
@@ -202,7 +330,7 @@ function updateCart(){
 // adicionar item
 document.querySelectorAll('.card .btn').forEach(b=>{
   b.addEventListener('click',e=>{
-    if(!lojaAberta){ alert('A loja está fechada. Não é possível adicionar produtos.'); return; }
+    if(!lojaAberta){ alert('A loja está fechada. Funciona Seg-Sáb 18:30–22:20'); return; }
     const id=parseInt(e.currentTarget.dataset.id);
     const item=menuItems.find(i=>i.id===id);
     const existing=cart.find(c=>c.id===id);
@@ -237,7 +365,7 @@ document.getElementById('btn-checkout').addEventListener('click',()=>{
   cart.forEach(i=>{
     total+=i.price*i.qty;
     const div=document.createElement('div'); div.className='order-item';
-    div.textContent=`${i.name} x${i.qty} — R$ ${(i.price*i.qty).toFixed(2)}`;
+    div.innerHTML=${i.img?<img src="${i.img}">:''} ${i.name} x${i.qty} — R$ ${(i.price*i.qty).toFixed(2)};
     orderList.appendChild(div);
   });
   modalTotal.textContent='R$ '+total.toFixed(2);
@@ -254,80 +382,32 @@ document.getElementById('confirm-order').addEventListener('click',()=>{
   let deliveryAddress='';
   if(deliveryOption==='Delivery'){
     total+=5;
-    deliveryAddress=`Bairro: ${deliveryBairro.value}\nRua: ${deliveryRua.value}\nNúmero: ${deliveryNum.value}`;
+    deliveryAddress=Bairro: ${deliveryBairro.value}\nRua: ${deliveryRua.value}\nNúmero: ${deliveryNum.value};
     if(!deliveryBairro.value || !deliveryRua.value || !deliveryNum.value){ alert('Preencha o endereço'); return; }
   }
   const client=prompt('Digite seu nome completo:').trim()||'Cliente';
 
-  // gerar mensagem formatada
-  let message = `Olá, aqui é ${client}.\n\nPedido:\n`;
-  cart.forEach(i=>{ message+=`- ${i.name} x${i.qty} — R$ ${(i.price*i.qty).toFixed(2)}\n`; });
-  message+=`\nSubtotal: R$ ${total.toFixed(2)}\n`;
-  if(deliveryOption==='Delivery'){ message+=`Taxa de Delivery: R$ 5,00\n`; total += 5; }
-  message+=`Total: R$ ${total.toFixed(2)}\n`;
-  message+=`Forma de pagamento: ${payment} ${cardType?`(${cardType})`:''}\n`;
-  if(deliveryOption==='Delivery'){ message+=`Endereço para entrega:\n${deliveryAddress}\n`; }
+  let message = Olá, aqui é ${client}.\n\nPedido:\n;
+  cart.forEach(i=>{ message+=- ${i.name} x${i.qty} — R$ ${(i.price*i.qty).toFixed(2)}\n; });
+  if(deliveryOption==='Delivery'){ message+=Taxa de Delivery: R$ 5,00\n; }
+  message+=Total: R$ ${total.toFixed(2)}\n;
+  message+=Forma de pagamento: ${payment} ${cardType?(${cardType}):''}\n;
+  if(deliveryOption==='Delivery'){ message+=Endereço para entrega:\n${deliveryAddress}\n; }
 
-  // abrir WhatsApp
-  const whatsappNumber = "5518991616645"; // <- substitua pelo número da empresa com DDD
-  const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+  const whatsappNumber = "5518991616645";
+  const url = https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)};
   window.open(url,'_blank');
 
   cart=[]; updateCart();
   modal.classList.remove('open');
 });
 
-function verificarHorarioFuncionamento() {
-    const agora = new Date();
-
-    // Ajuste para horário de Brasília (GMT-3)
-    const utc = agora.getTime() + (agora.getTimezoneOffset() * 60000);
-    const brasilia = new Date(utc + (3600000 * -3)); // GMT-3
-
-    const diaSemana = brasilia.getDay(); // 0 = Domingo, 1 = Segunda, ..., 6 = Sábado
-    const hora = brasilia.getHours();
-    const minuto = brasilia.getMinutes();
-
-    // Segunda a sábado -> 18:30 até 22:20
-    const aberto = (diaSemana >= 1 && diaSemana <= 6) &&
-                   ((hora > 18 || (hora === 18 && minuto >= 30)) &&
-                    (hora < 22 || (hora === 22 && minuto <= 20)));
-
-    return { aberto, diaSemana, hora, minuto };
-}
-
-// Substituir a variável lojaAberta dinamicamente
-let statusLoja = verificarHorarioFuncionamento();
-lojaAberta = statusLoja.aberto;
-
-// Atualizar status a cada minuto
-setInterval(() => {
-    statusLoja = verificarHorarioFuncionamento();
-    lojaAberta = statusLoja.aberto;
-}, 60000);
-
-// Modificar o evento de adicionar ao carrinho para alertar
-document.querySelectorAll('.card .btn').forEach(b => {
-    b.addEventListener('click', e => {
-        statusLoja = verificarHorarioFuncionamento();
-        lojaAberta = statusLoja.aberto;
-
-        if (!lojaAberta) {
-            if (statusLoja.diaSemana === 0) {
-                alert('A loja está fechada aos domingos.');
-            } else {
-                alert('A loja funciona de segunda a sábado das 18:30 até 22:20.');
-            }
-            return;
-        }
-
-        const id = parseInt(e.currentTarget.dataset.id);
-        const item = menuItems.find(i => i.id === id);
-        const existing = cart.find(c => c.id === id);
-        if (existing) { existing.qty++; } else { cart.push({ ...item, qty: 1 }); }
-        updateCart();
-    });
+// botão WhatsApp flutuante
+document.getElementById('whatsapp-btn').addEventListener('click',()=>{
+  const whatsappNumber = "5518991616645";
+  window.open(https://wa.me/${whatsappNumber},'_blank');
 });
 </script>
+
 </body>
 </html>
