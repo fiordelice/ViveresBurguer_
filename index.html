@@ -279,8 +279,8 @@ const menuEl=document.getElementById('menu');
 menuItems.forEach(i=>{
   const card=document.createElement('div'); card.className='card';
   card.innerHTML=`
-    <div class="thumb">${i.img?<img src="${i.img}">:'<span style="color:#ccc">Sem imagem</span>'}</div>
-    ${i.badge?<div class="badge">${i.badge}</div>:''}
+    <div class="thumb">${i.img ? `<img src="${i.img}">` : '<span style="color:#ccc">Sem imagem</span>'}</div>
+    ${i.badge ? `<div class="badge">${i.badge}</div>` : ''}
     <div class="name">${i.name}</div>
     <div class="price">R$ ${i.price.toFixed(2)}</div>
     <div class="desc">${i.desc}</div>
@@ -312,7 +312,7 @@ function updateCart(){
     total+=item.price*item.qty;
     const div=document.createElement('div'); div.className='cart-item';
     div.innerHTML=`
-      <div class="ci-thumb">${item.img?<img src="${item.img}">:'<span style="color:#ccc">Sem imagem</span>'}</div>
+      <div class="ci-thumb">${item.img ? `<img src="${item.img}">` : '<span style="color:#ccc">Sem imagem</span>'}</div>
       <div class="ci-meta"><div class="ci-name">${item.name}</div><div class="ci-desc">R$ ${item.price.toFixed(2)}</div></div>
       <div class="ci-controls">
         <div class="qty"><button class="minus">-</button><span>${item.qty}</span><button class="plus">+</button></div>
@@ -365,7 +365,7 @@ document.getElementById('btn-checkout').addEventListener('click',()=>{
   cart.forEach(i=>{
     total+=i.price*i.qty;
     const div=document.createElement('div'); div.className='order-item';
-    div.innerHTML=${i.img?<img src="${i.img}">:''} ${i.name} x${i.qty} — R$ ${(i.price*i.qty).toFixed(2)};
+    div.innerHTML = `${i.img ? `<img src="${i.img}">` : ''} ${i.name} x${i.qty} — R$ ${(i.price*i.qty).toFixed(2)}`;
     orderList.appendChild(div);
   });
   modalTotal.textContent='R$ '+total.toFixed(2);
@@ -382,20 +382,20 @@ document.getElementById('confirm-order').addEventListener('click',()=>{
   let deliveryAddress='';
   if(deliveryOption==='Delivery'){
     total+=5;
-    deliveryAddress=Bairro: ${deliveryBairro.value}\nRua: ${deliveryRua.value}\nNúmero: ${deliveryNum.value};
+    deliveryAddress=`Bairro: ${deliveryBairro.value}\nRua: ${deliveryRua.value}\nNúmero: ${deliveryNum.value}`;
     if(!deliveryBairro.value || !deliveryRua.value || !deliveryNum.value){ alert('Preencha o endereço'); return; }
   }
   const client=prompt('Digite seu nome completo:').trim()||'Cliente';
 
-  let message = Olá, aqui é ${client}.\n\nPedido:\n;
-  cart.forEach(i=>{ message+=- ${i.name} x${i.qty} — R$ ${(i.price*i.qty).toFixed(2)}\n; });
-  if(deliveryOption==='Delivery'){ message+=Taxa de Delivery: R$ 5,00\n; }
-  message+=Total: R$ ${total.toFixed(2)}\n;
-  message+=Forma de pagamento: ${payment} ${cardType?(${cardType}):''}\n;
-  if(deliveryOption==='Delivery'){ message+=Endereço para entrega:\n${deliveryAddress}\n; }
+  let message = `Olá, aqui é ${client}.\n\nPedido:\n`;
+  cart.forEach(i=>{ message+=`- ${i.name} x${i.qty} — R$ ${(i.price*i.qty).toFixed(2)}\n`; });
+  if(deliveryOption==='Delivery'){ message+=`Taxa de Delivery: R$ 5,00\n`; }
+  message+=`Total: R$ ${total.toFixed(2)}\n`;
+  message+=`Forma de pagamento: ${payment} ${cardType?(`(${cardType})`):''}\n`;
+  if(deliveryOption==='Delivery'){ message+=`Endereço para entrega:\n${deliveryAddress}\n`; }
 
   const whatsappNumber = "5518991616645";
-  const url = https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)};
+  const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
   window.open(url,'_blank');
 
   cart=[]; updateCart();
@@ -405,7 +405,7 @@ document.getElementById('confirm-order').addEventListener('click',()=>{
 // botão WhatsApp flutuante
 document.getElementById('whatsapp-btn').addEventListener('click',()=>{
   const whatsappNumber = "5518991616645";
-  window.open(https://wa.me/${whatsappNumber},'_blank');
+  window.open(`https://wa.me/${whatsappNumber}`,'_blank');
 });
 </script>
 
