@@ -245,14 +245,11 @@ select,input{width:100%;padding:10px;border-radius:8px;margin-top:6px;background
   </div>
 </div>
 
-<footer style="background:#111;color:#ccc;text-align:center;padding:16px;margin-top:32px;border-top:2px solid var(--orange);font-size:0.9rem;">
-  Desenvolvido por <strong>Gabriella Fiordelice</strong> &copy; 2025
-</footer>
-
 <!-- Botão WhatsApp flutuante -->
 <button id="whatsapp-btn">💬</button>
 
 <script>
+// estado da loja
 function verificarHorarioFuncionamento() {
     const agora = new Date();
     const utc = agora.getTime() + (agora.getTimezoneOffset() * 60000);
@@ -270,19 +267,20 @@ let statusLoja = verificarHorarioFuncionamento();
 let lojaAberta = statusLoja.aberto;
 setInterval(()=>{ statusLoja = verificarHorarioFuncionamento(); lojaAberta = statusLoja.aberto; },60000);
 
+// menu
 const menuItems=[
   {id:1,name:'Classic Burger',desc:'Hambúrguer simples',price:28.50,img:'burguer.png',badge:'Mais pedido'},
-  {id:2,name:'Bacon Bliss',desc:'Bacon + queijo',price:36.90,img:'burguer1.png',badge:'Novo'},
-  {id:3,name:'Cheese Lover',desc:'Queijo extra',price:32.00,img:'burguer2.png',badge:''},
-  {id:4,name:'Veggie Delight',desc:'Veggie burger',price:30.00,img:'burguer3.png',badge:'Vegano'}
+  {id:2,name:'Bacon Bliss',desc:'Bacon + queijo',price:36.90,img:'burguer.png',badge:'Novo'},
+  {id:3,name:'Cheese Lover',desc:'Queijo extra',price:32.00,img:'burguer.png',badge:''},
+  {id:4,name:'Veggie Delight',desc:'Veggie burger',price:30.00,img:'burguer.png',badge:'Vegano'}
 ];
 
 const menuEl=document.getElementById('menu');
 menuItems.forEach(i=>{
   const card=document.createElement('div'); card.className='card';
   card.innerHTML=`
-    <div class="thumb">${i.img?`<img src="${i.img}">`:'<span style="color:#ccc">Sem imagem</span>'}</div>
-    ${i.badge?`<div class="badge">${i.badge}</div>`:''}
+    <div class="thumb">${i.img?<img src="${i.img}">:'<span style="color:#ccc">Sem imagem</span>'}</div>
+    ${i.badge?<div class="badge">${i.badge}</div>:''}
     <div class="name">${i.name}</div>
     <div class="price">R$ ${i.price.toFixed(2)}</div>
     <div class="desc">${i.desc}</div>
@@ -290,7 +288,7 @@ menuItems.forEach(i=>{
   `;
   menuEl.appendChild(card);
 });
-  
+
 // carrinho
 let cart=[];
 const cartEmpty=document.getElementById('cart-empty');
@@ -413,7 +411,3 @@ document.getElementById('whatsapp-btn').addEventListener('click',()=>{
 
 </body>
 </html>
-
-
-
-
