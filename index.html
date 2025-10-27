@@ -682,22 +682,7 @@
       color: #fff;
     }
 
-    .modal-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 12px;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.footer-buttons {
-  display: flex;
-  flex-direction: column;  /* só aqui */
-  width: 100%;
-  gap: 8px;
-}
-
+   
 
     .btn {
       padding: 10px 14px;
@@ -748,10 +733,7 @@
         font-size: 0.9rem;
       }
 
-      .footer-buttons {
-        flex-direction: column;
-        width: 100%;
-      }
+      
     }
 
 
@@ -792,46 +774,7 @@
       align-items: center;
     }
 
-    /* Footer */
-#footer {
-  background: #111;
-  color: var(--orange);
-  padding: 16px 20px;
-  text-align: center;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.95rem;
-  border-top: 2px solid var(--orange);
-  position: relative;  /* evita confusão com modal */
-  z-index: 1;          /* menor que modal */
-}
-
-
-    .footer-content {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .footer-content .site-info {
-      font-weight: 700;
-      font-size: 1.1rem;
-    }
-
-    .footer-content .developer {
-      font-weight: 400;
-      font-size: 0.9rem;
-      color: #ccc;
-    }
-
-    @media(min-width:480px) {
-      .footer-content {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-    }
+   
 
     /* Responsividade */
     @media(max-width:980px) {
@@ -1234,22 +1177,7 @@ window.addEventListener('DOMContentLoaded', () => {
       <textarea id="itemObs" placeholder="Ex: ponto da carne, sem cebola..."></textarea>
       <div class="obs-preview" id="obsPreview" style="display:none;"></div>
 
-      <div class="modal-footer">
-       
-        <div class="footer-buttons">
-          <button class="btn remove" id="addObsCancel">Cancelar</button>
-          <button class="btn confirm" id="addObsConfirm">Adicionar ao Carrinho</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</main>
-  <footer id="footer">
-    <div class="footer-content">
-      <span class="site-info">𝑽í𝒗𝒆𝒓𝒆𝒔 𝑩𝒖𝒓𝒈𝒖𝒆𝒓</span>
-      <span class="developer">Desenvolvido por <strong>Gabriella Fiordelice</strong></span>
-    </div>
-  </footer>
+      
 
   <!-- Botão WhatsApp flutuante -->
   <button class="whatsapp-btn" id="whatsapp-btn"><i class="fab fa-whatsapp"></i></button>
@@ -1524,23 +1452,81 @@ body {
   margin: 0;
 }
 
-/* Main ocupa o espaço disponível */
-main {
-  flex: 1;
+/* Footer */
+  footer {
+    padding: 12px 10px;
+  }
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+  }
+  /* Footer compacto */
+footer {
+  background: #111;
+  border-top: 2px solid var(--orange);
+  color: #ccc;
+  font-family: 'Inter', sans-serif;
+  padding: 20px 16px; /* menor padding */
+  margin-top: 20px;  /* menor espaço acima */
 }
 
-/* Footer fixo no final */
-footer {
-  flex-shrink: 0; /* garante que não encolha */
-  background-color: #222;
-  color: white;
-  padding: 12px 16px;
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px; /* menos espaçamento interno */
   text-align: center;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* menor espaço entre logo e texto */
+}
+
+.footer-logo img {
+  width: 35px;   /* logo um pouco menor */
+  height: 35px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.footer-title {
+  font-weight: 700;
+  font-size: 1.1rem; /* menor tamanho da fonte */
+  color: var(--orange);
+}
+
+.footer-text {
+  font-size: 0.85rem; /* menor fonte */
+  color: #aaa;
+}
+
+/* Responsividade */
+@media (min-width: 480px) {
+  .footer-container {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
 }
 
   </style>
 
 <div id="toast" class="toast">Produto adicionado ao carrinho com sucesso!</div>
+<footer>
+  <div class="footer-container">
+    <div class="footer-logo">
+      <img src="logo.png" alt="Logo Víveres">
+      <span class="footer-title">𝑽í𝒗𝒆𝒓𝒆𝒔 𝑩𝒖𝒓𝒈𝒖𝒆𝒓</span>
+    </div>
+    <p class="footer-text">© 2025 – Desenvolvido por <strong>Gabriella Fiordelice</strong></p>
+  </div>
+</footer>
 
 <script>
   // Função para exibir mensagem na tela
