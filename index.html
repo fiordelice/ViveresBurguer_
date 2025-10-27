@@ -2170,7 +2170,7 @@ btnClear.addEventListener('click', () => {
     
 
 document.getElementById('confirm-order').addEventListener('click', () => {
-  if (!cart.length) return alert('Carrinho vazio');
+  if (!cart.length) return alert('');
 
   let total = cart.reduce((acc, i) => acc + ((i.unitPrice||i.basePrice) * i.qty), 0);
 
