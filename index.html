@@ -9,51 +9,7 @@
   
   <title>𝑽í𝒗𝒆𝒓𝒆𝒔 𝑩𝒖𝒓𝒈𝒖𝒆𝒓</title>
   <style>
-    /* Força o total a ficar dentro da modal e não no footer */
-#modal-total {
-  all: unset; /* limpa qualquer estilo herdado */
-  display: inline-block;
-  font-weight: bold;
-  font-size: 1.1rem;
-  color: #000;
-  margin-left: auto;
-}
-
-/* Reaplica apenas o estilo correto da linha */
-.modal-card .row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: static;
-}
-
-/* Garante que a modal cubra a tela e o footer não interfira */
-.modal {
-  position: fixed !important;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.6);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 99999 !important;
-}
-
-/* Isola o conteúdo da modal */
-.modal-card {
-  position: relative !important;
-  background: #fff;
-  padding: 20px;
-  border-radius: 15px;
-  width: 90%;
-  max-width: 420px;
-  color: #333;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  z-index: 100000 !important;
-}
-
+    
     /* Base (desktop e telas grandes) */
     .thumb img[src*="agua"],
     .thumb img[src*="aguagas"],
@@ -489,17 +445,30 @@
       flex: 1;
     }
 
-    /* Modal geral */
-    .modal {
-      position: fixed;
-      inset: 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0, 0, 0, 0.8);
-      z-index: 80;
-      padding: 16px;
-    }
+   /* Modal geral */
+.modal {
+  position: fixed;      /* fixa na tela */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;         /* acima de tudo */
+}
+
+/* Card do modal */
+.modal-card {
+  background: #111;
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  max-height: 90%;
+  overflow-y: auto;
+}
 
     .modal.open {
       display: flex;
@@ -714,18 +683,21 @@
     }
 
     .modal-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 12px;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
 
-    .footer-buttons {
-      display: flex;
-      gap: 8px;
-    }
+.footer-buttons {
+  display: flex;
+  flex-direction: column;  /* só aqui */
+  width: 100%;
+  gap: 8px;
+}
+
 
     .btn {
       padding: 10px 14px;
@@ -821,15 +793,18 @@
     }
 
     /* Footer */
-    #footer {
-      background: #111;
-      color: var(--orange);
-      padding: 16px 20px;
-      text-align: center;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.95rem;
-      border-top: 2px solid var(--orange);
-    }
+#footer {
+  background: #111;
+  color: var(--orange);
+  padding: 16px 20px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  border-top: 2px solid var(--orange);
+  position: relative;  /* evita confusão com modal */
+  z-index: 1;          /* menor que modal */
+}
+
 
     .footer-content {
       display: flex;
