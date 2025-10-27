@@ -1973,21 +1973,7 @@ if (toggleBtn) {
   let total = 0;
   let totalQty = 0;
 
-  if (cart.length === 0) {
-    // Mostra carrinho vazio
-    cartEmpty.style.display = 'block';
-    cartList.style.display = 'none';
-    cartTotals.style.display = 'none';
 
-    // Zera botão flutuante
-    if (cartCountBtn) {
-      cartCountBtn.textContent = '';
-      cartCountBtn.style.display = 'none';
-    }
-    if (cartTotalBtn) cartTotalBtn.textContent = 'R$ 0,00';
-    totalEl.textContent = 'R$ 0,00';
-    return;
-  }
 
   // Mostra itens do carrinho
   cartEmpty.style.display = 'none';
